@@ -31,10 +31,11 @@ public class AsyncHttpHelper {
 	private AsyncHttpClient mClient;
 	
 	public void get(final Context ctx, final String url, final long expireTime, final OnAsyncHttpListener listener){
-		final CacheSqilte sql = new CacheSqilte(ctx);
-		sql.open(true);
 		if(expireTime > 0){
+			CacheSqilte sql = new CacheSqilte(ctx);
+			sql.open(false);
 			String cache = sql.query(url, expireTime);
+			sql.close();
 			if(cache != null){
 				//System.out.println("cache");
 				listener.onAsyncHttpSuccess(cache);
@@ -48,7 +49,10 @@ public class AsyncHttpHelper {
 				if(listener.onAsyncHttpVerify(content)){
 					listener.onAsyncHttpSuccess(content);
 					if(expireTime > 0){
+						CacheSqilte sql = new CacheSqilte(ctx);
+						sql.open(true);
 						sql.update(url, content);
+						sql.close();
 					}
 				}else{
 					listener.onAsyncHttpFailure(new Throwable("not through verify"), content);
