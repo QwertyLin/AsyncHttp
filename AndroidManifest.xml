@@ -8,6 +8,7 @@
     
     <application
         android:label="http"
+        android:icon="@drawable/ic_launcher"
         >
         <activity 
             android:name=".example.MainActivity"
