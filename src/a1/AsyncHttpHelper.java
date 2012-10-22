@@ -16,7 +16,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class AsyncHttpHelper {
 	
-	public static final long TIME_DAY = 1000 * 60 * 60 * 24;
+	public static final long 
+		TIME_DAY = 1000 * 60 * 60 * 24,
+		NO_CACHE = -1;
 	
 	public interface OnAsyncHttpListener {
 		boolean onAsyncHttpVerify(String content);
