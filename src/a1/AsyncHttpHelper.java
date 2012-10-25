@@ -50,7 +50,7 @@ public class AsyncHttpHelper {
 			public void onSuccess(String content) {
 				if(listener.onAsyncHttpVerify(content)){
 					listener.onAsyncHttpSuccess(content);
-					if(expireTime > 0){
+					if(expireTime > NO_CACHE){
 						CacheSqilte sql = new CacheSqilte(ctx);
 						sql.open(true);
 						sql.update(url, content);
@@ -68,7 +68,7 @@ public class AsyncHttpHelper {
 		mClient.get(url, mResponseHandler);
 	}
 	
-	public ByteArrayInputStream toStream(String str){
+	public static ByteArrayInputStream toStream(String str){
 		return new ByteArrayInputStream(str.getBytes());
 	}
 	
