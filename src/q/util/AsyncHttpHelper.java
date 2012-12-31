@@ -1,4 +1,4 @@
-package a1;
+package q.util;
 
 import java.io.ByteArrayInputStream;
 import java.security.MessageDigest;
